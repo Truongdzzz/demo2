@@ -38,4 +38,23 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+    @Override
+    public boolean post(UserModel user1) {
+        String sql = "insert into user(username, password, email, role, phone, createDate) values(?,?,?,?,?,?)";
+        try {
+            connection = (Connection) ConnectMySQL.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user1.username);
+            preparedStatement.setString(2, user1.password);
+            preparedStatement.setString(3, user1.email);
+            preparedStatement.setString(4, String.valueOf(user1.role));
+            preparedStatement.setString(5, user1.phone);
+            preparedStatement.setString(6, String.valueOf(user1.createDate));
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+//            return false;
+            throw new RuntimeException(e);
+        }
+    }
 }
