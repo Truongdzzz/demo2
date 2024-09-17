@@ -25,6 +25,7 @@ public class RegisterController extends HttpServlet {
         user.setPassword(req.getParameter("password"));
         user.setEmail(req.getParameter("email"));
         user.setPhone(req.getParameter("phone"));
+        user.setRole(2);
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
         user.setCreateDate(date);
