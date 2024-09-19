@@ -14,20 +14,20 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null&&session.getAttribute("username")!=null) {
-            resp.sendRedirect(req.getContextPath()+"/waiting");
+            resp.sendRedirect(req.getContextPath()+"/profile");
             return;
         }
-        Cookie[] cookies = req.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("username")) {
-                    session = req.getSession(true);
-                    session.setAttribute("username", cookie.getValue());
-                    resp.sendRedirect(req.getContextPath()+"/waiting");
-                    return;
-                }
-            }
-        }
+//        Cookie[] cookies = req.getCookies();
+//        if (cookies != null) {
+//            for (Cookie cookie : cookies) {
+//                if(cookie.getName().equals("username")) {
+//                    session = req.getSession(true);
+//                    session.setAttribute("username", cookie.getValue());
+//                    resp.sendRedirect(req.getContextPath()+"/waiting");
+//                    return;
+//                }
+//            }
+//        }
         req.getRequestDispatcher("login.jsp").forward(req, resp);
         return;
     }
@@ -38,8 +38,14 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("password");
         UserServiceImpl userService = new UserServiceImpl();
         UserModel user = userService.login(username, password);
+        HttpSession session = req.getSession(false);
         if(user != null) {
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            session.setAttribute("username", username);
+            req.getRequestDispatcher("profile.jsp").forward(req, resp);
+        }
+        else{
+            req.setAttribute("alert", "Invalid username or password");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
 }

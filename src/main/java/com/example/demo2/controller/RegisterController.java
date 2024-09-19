@@ -32,10 +32,10 @@ public class RegisterController extends HttpServlet {
         UserServiceImpl userService=new UserServiceImpl();
         boolean check = userService.post(user);
         if(check){
-            resp.sendRedirect("login");
+            resp.sendRedirect(req.getContextPath()+"/login");
         }
         else{
-            resp.sendRedirect("index");
+            req.setAttribute("alert", "No");
         }
     }
 }

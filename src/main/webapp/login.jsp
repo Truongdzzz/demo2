@@ -12,7 +12,7 @@
 <form action=login method="post">
     <h2>Đăng nhập</h2>
     <c:if test="${alert !=null}">
-    <h3 class="alert alertdanger">${alert}</h3>
+    <h3 class="alert alertdanger" style="color: red">${alert}</h3>
     </c:if>
     <section>
         <label class="input login-input">
