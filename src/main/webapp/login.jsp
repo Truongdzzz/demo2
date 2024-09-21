@@ -27,6 +27,7 @@
             </div>
             <button type="submit" style="width: 200px; height: 50px">Submit</button>
         </label>
+        <a href="forgetpassword">Forget Password</a>
     </section>
 <body>
 

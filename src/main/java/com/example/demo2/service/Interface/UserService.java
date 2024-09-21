@@ -9,4 +9,5 @@ public interface UserService {
     public UserModel get(String username);
     public boolean post(UserModel user);
     public boolean checkExistsUsername(String username);
+    public boolean updatePassword(String username, String newPassword);
 }

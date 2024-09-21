@@ -36,21 +36,20 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public boolean updatePassword(String username, String newPassword) {
+        UserDao userDao = new UserDaoImpl();
+        return userDao.updatePassword(username, newPassword);
+    }
+
     public static void main(String[] args) {
         UserServiceImpl userService = new UserServiceImpl();
-        UserModel user = new UserModel();
-        user.setUsername("admin");
-        user.setPassword("123456");
-        user.setEmail("admin@gmail.com");
-        user.setRole(1);
-        user.setPhone("09991123");
-        long millis=System.currentTimeMillis();
-        java.sql.Date date=new java.sql.Date(millis);
-        user.setCreateDate(date);
-        boolean result = userService.post(user);
-        if(result){
+        boolean check = userService.updatePassword("admin", "11111");
+        if(check) {
             System.out.print("OK");
         }
-        else System.out.print("FAIL");
+        else {
+            System.out.print("NO");
+        }
     }
 }

@@ -57,4 +57,21 @@ public class UserDaoImpl implements UserDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean updatePassword(String username, String password) {
+        UserModel user = get(username);
+        String sql = "update user set password=? where id=?";
+        try {
+            connection = (Connection) ConnectMySQL.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, user.getId());
+            preparedStatement.executeUpdate();
+            return true;
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
