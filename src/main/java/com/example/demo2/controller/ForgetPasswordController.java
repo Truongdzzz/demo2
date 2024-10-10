@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ForgetPasswordController  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/forgetpassword.jsp").forward(req, resp);
+        req.getRequestDispatcher("views/forgetpassword.jsp").forward(req, resp);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ForgetPasswordController  extends HttpServlet {
         if(userModel.getPassword().equals(password)){
             boolean check = userService.updatePassword(username, newPassword);
             if(check){
-                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("views/login.jsp").forward(req, resp);
             }
             else {
                 req.setAttribute("alert", "Invalid name or password");

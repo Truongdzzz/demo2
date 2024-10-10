@@ -28,8 +28,7 @@ public class LoginController extends HttpServlet {
 //                }
 //            }
 //        }
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
-        return;
+        req.getRequestDispatcher("views/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -41,11 +40,11 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession(false);
         if(user != null) {
             session.setAttribute("username", username);
-            req.getRequestDispatcher("profile.jsp").forward(req, resp);
+            req.getRequestDispatcher("views/profile.jsp").forward(req, resp);
         }
         else{
             req.setAttribute("alert", "Invalid username or password");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("views/login.jsp").forward(req, resp);
         }
     }
 }

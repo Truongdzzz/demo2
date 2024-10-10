@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sitemesh>
+    <mapping path="/*" decorator="index.jsp"/>
+    <mapping path="/login" decorator="login.jsp"/>
+    <mapping path="/register" decorator="register.jsp"/>
+    <mapping path="/forgetpassword" decorator="forgetpassword.jsp"/>
+</sitemesh>
